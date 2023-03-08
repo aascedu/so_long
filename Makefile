@@ -6,7 +6,7 @@
 #    By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 10:09:37 by arthurasced       #+#    #+#              #
-#    Updated: 2023/03/08 13:56:27 by aascedu          ###   ########lyon.fr    #
+#    Updated: 2023/03/08 14:57:01 by aascedu          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,14 +38,17 @@ $(NAME) : mlx $(OBJS)
 	if [ $(OS) = "Linux" ]; then\
 		$(CC) $(CFLAGS) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME);\
 	else\
-		$(CC) $(CFLAGS) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME);\
+		$(CC) $(CFLAGS) $(OBJS) -Lmlx_macos -framework OpenGL -framework AppKit -o $(NAME);\
 	fi
 
 
 clean : 
 	$(RM) $(OBJS)
-	make clean -C mlx_linux
-	make clean -C mlx_macos
+	if [ $(OS) = "Linux" ]; then\
+		make clean -C mlx_linux;\
+	else\
+		make clean -C mlx_macos;\
+	fi
 
 fclean :
 	$(RM) $(NAME)
