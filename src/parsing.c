@@ -3,22 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthurascedu <arthurascedu@student.42ly    +#+  +:+       +#+        */
+/*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/10 14:44:42 by arthurasced       #+#    #+#             */
-/*   Updated: 2023/03/10 15:13:01 by arthurasced      ###   ########lyon.fr   */
+/*   Created: 2023/03/13 12:49:55 by aascedu           #+#    #+#             */
+/*   Updated: 2023/03/13 15:06:40 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_filename(char *filename)
+void	ber_to_array(char *filename, t_game *game)
 {
-	if (filename[ft_strlen(filename) - 1] != 'r'
-		|| filename[ft_strlen(filename) - 2] != 'e'
-		|| filename[ft_strlen(filename) - 3] != 'b'
-		|| filename[ft_strlen(filename) - 4] != '.')
-		return (1);
-	return (0);
-}
+	int		i;
+	int		fd;
+	char	*line;
+	char	*string;
+	//char	**array;
 
+	string = ft_calloc(1, sizeof(char));
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		game->arg_valid = 1;
+	if (fd < 0)
+		return ;
+	line = get_next_line(fd);
+	// string = ft_strjoin(line, string);
+	i = 0;
+    while (line || i == 0)
+    {
+        line = get_next_line(fd);
+		string = ft_strjoin_free(string, line);
+        // ft_printf("line :%s", line);
+        // free(line);
+        i++;
+		// ft_printf("string :%s", string);
+    }
+	game->map = ft_split(string, '\n');
+}

@@ -6,7 +6,7 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:40:38 by aascedu           #+#    #+#             */
-/*   Updated: 2022/12/05 13:45:12 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/13 11:11:05 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	ft_hex_print(unsigned long long ptr, int *length)
 	}
 	else
 	{
-		if (ptr >= 0 && ptr <= 9)
+		if (ptr <= 9)
 			*length += ft_print_char(ptr + 48);
 		else
 			*length += ft_print_char(ptr + 'a' - 10);

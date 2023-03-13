@@ -6,7 +6,7 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 15:22:40 by aascedu           #+#    #+#             */
-/*   Updated: 2022/12/05 14:43:39 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/13 15:09:59 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <limits.h>
+# include <stdint.h>
+# include <fcntl.h>
+# include <stdio.h>
 
 //libft project lines
 typedef struct s_list
@@ -89,8 +92,10 @@ int		ft_specifier(va_list ap, const char c);
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 512
 # endif
+
 char	*add_buffer(char *line, char *buff);
 char	*ft_strjoin_free(char *line, char *buff);
+char	*ft_strjoin_frees1(char *string, char *line);
 char	*get_next_line(int fd);
 char	*get_next_line_fd(int fd);
 

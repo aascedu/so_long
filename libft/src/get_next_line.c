@@ -6,7 +6,7 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:05:04 by aascedu           #+#    #+#             */
-/*   Updated: 2022/12/05 14:41:54 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/13 11:15:53 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	int			byte_read;
 
-	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || fd > FOPEN_MAX || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (ft_bzero(buff, BUFFER_SIZE + 1), NULL);
 	line = (char *)malloc(sizeof(char));
 	if (!line)

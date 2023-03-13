@@ -6,7 +6,7 @@
 #    By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/08 15:12:19 by aascedu           #+#    #+#              #
-#    Updated: 2022/12/05 15:53:58 by aascedu          ###   ########lyon.fr    #
+#    Updated: 2023/03/13 13:47:37 by aascedu          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRCS =  ft_isalnum.c ft_isascii.c ft_isprint.c ft_memmove.c ft_strlen.c ft_bzero
 		ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c ft_print_addr.c \
 		ft_print_char.c ft_print_hex.c ft_print_nbr.c ft_print_str.c \
 		ft_print_unbr.c ft_printf.c ft_specifier.c get_next_line.c \
-		get_next_line_utils.c get_next_line_bonus.c \
+		get_next_line_utils.c get_next_line_bonus.c ft_strjoin_frees1.c \
 
 SRCS_PREFIX = $(addprefix $(SRC_DIR), $(SRCS))
 
@@ -39,35 +39,31 @@ HEADER = ./include/libft.h
 OBJS = $(SRCS:.c=.o)
 OBJS_DIR = objects/
 
-CC = @cc
-RM = @rm -rf
+CC = cc
+RM = rm -rf
 CFLAGS = -Wall -Werror -Wextra -I./include/
-AR = @ar
+AR = ar
 ARFLAGS = rcs
 
 NAME = libft.a
 
 all: $(OBJS_DIR)
-	@make $(NAME)
+	make $(NAME)
 
 $(OBJS_DIR) :
-	@mkdir $(OBJS_DIR)
+	mkdir $(OBJS_DIR)
 
 $(OBJS_DIR)%.o : $(SRC_DIR)%.c $(HEADER)
 	$(CC) $(CFLAGS) -o $@ -c $<
-	@echo "$(BOLD)libft/$<$(END) $(GREEN)compiled !$(END)"
 
 $(NAME): $(addprefix $(OBJS_DIR), $(OBJS))
 	$(AR) $(ARFLAGS) $(NAME) $(addprefix $(OBJS_DIR), $(OBJS))
-	@echo "$(BOLD)$(NAME)$(END) $(GREEN)has been created !$(END)"
 
 clean:
 	$(RM) $(OBJS_DIR)
-	@echo "Every $(BOLD).o$(END) files and $(BOLD)objects$(END) folder have been $(GREEN)removed !$(END)"
 
 fclean: clean
 	$(RM) $(NAME)
-	@echo "$(BOLD)libft.a$(END) has been $(GREEN)deleted !$(END)"
 
 re: fclean
 	@make all
