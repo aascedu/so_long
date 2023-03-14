@@ -6,14 +6,15 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:44:42 by arthurasced       #+#    #+#             */
-/*   Updated: 2023/03/14 13:20:21 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/14 14:59:53 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_error(void)
+void	ft_error(char *str)
 {
+	ft_printf("%s : had an error !\n", str);
 	
 }
 
