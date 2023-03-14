@@ -6,11 +6,32 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:44:42 by arthurasced       #+#    #+#             */
-/*   Updated: 2023/03/13 15:10:25 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/14 13:20:21 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	ft_error(void)
+{
+	
+}
+
+int	check_str(char *str)
+{
+	int	i;
+
+	
+	i = 0;
+	while (str && str[i])
+	{
+		if (str[i] != '1' && str[i] != '0' && str[i] != '\n' && str[i] != 'C'
+			&& str[i] != 'E' && str[i] != 'P')
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 int	check_filename(char *filename)
 {
@@ -35,11 +56,11 @@ int	check_directory(char *filename)
 	return (1);
 }
 
-void	valid_arg(char *filename, t_game *game)
+int	valid_arg(char *filename)
 {
-	game->arg_valid = 0;
 	if (check_filename(filename))
-		game->arg_valid = 1;
+		return (1);
 	if (check_directory(filename))
-		game->arg_valid = 1;
+		return (1);
+	return (0);
 }

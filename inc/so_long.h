@@ -6,7 +6,7 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:28:22 by aascedu           #+#    #+#             */
-/*   Updated: 2023/03/13 15:04:19 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/14 13:00:26 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ typedef struct s_game
 	char	**map;
 }		t_game;
 
+int		check_str(char *str);
 int		check_filename(char *filename);
-void	valid_arg(char *filename, t_game *game);
-void	ber_to_array(char *filename, t_game *game);
+int		check_directory(char *filename);
+int		valid_arg(char *filename);
+int		ber_to_array(char *filename, t_game *game);
+void	free_array(char **array);
 
 #endif

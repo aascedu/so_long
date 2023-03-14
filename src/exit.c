@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 12:49:55 by aascedu           #+#    #+#             */
-/*   Updated: 2023/03/14 13:18:31 by aascedu          ###   ########lyon.fr   */
+/*   Created: 2023/03/14 12:49:00 by aascedu           #+#    #+#             */
+/*   Updated: 2023/03/14 13:02:58 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ber_to_array(char *filename, t_game *game)
+void	free_array(char **array)
 {
-	char	*line;
-	char	*str;
-	int		fd;
-
-	fd = open(filename, O_RDONLY);
-	line = get_next_line(fd);
-	str = ft_calloc(1, sizeof(char));
-	if (!line || !str)
-		ft_error();
-	while (line)
+	int	i;
+	
+	i = 0;
+	while (array[i])
 	{
-		str = ft_strjoin_free(str, line);
-		line = get_next_line(fd);
+		free(array[i]);
+		i++;
 	}
-	if (check_str(str))
-	{
-		game->arg_valid = 1;
-		return (free(str), 1);
-	}
-	game->map = ft_split(str, '\n');
-	return (free(str), 0);
+	free(array);
 }
