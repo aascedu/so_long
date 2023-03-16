@@ -6,7 +6,7 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:28:22 by aascedu           #+#    #+#             */
-/*   Updated: 2023/03/14 14:59:40 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/16 11:33:14 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,25 @@ typedef struct s_game
 	int		fd;
 	char	*str;
 	char	*line;
+	int		pos_x;
+	int		pos_y;
+	int		size_y;
 }		t_game;
 
+// error.c functions
 int		check_str(char *str);
 int		check_filename(char *filename);
 int		check_directory(char *filename);
 int		valid_arg(char *filename);
-int		ber_to_array(char *filename, t_game *game);
+
+// parsing.c functions
+void	ber_to_array(char *filename, t_game *game);
+void	border_check(t_game *game);
+char	**map_check(t_game *game, char **map);
+
+// exit.c functions
 void	free_array(char **array);
-void	ft_error(char *str);
+void	ft_error(char *str, t_game *game);
+void	ft_error_launched(char *str, t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:27:23 by aascedu           #+#    #+#             */
-/*   Updated: 2023/03/14 13:00:11 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/16 09:44:55 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	if (argc != 2 || valid_arg(argv[1]))
+	if (argc != 2 || check_directory(argv[1]) || check_filename(argv[1]))
 		return (1);
-	if (ber_to_array(argv[1], &game))
-		return (1);
+	ber_to_array(argv[1], &game);
 	free_array(game.map);
 	game.mlx_ptr = mlx_init();
 	if (game.mlx_ptr == NULL)

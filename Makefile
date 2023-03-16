@@ -6,7 +6,7 @@
 #    By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 10:09:37 by arthurasced       #+#    #+#              #
-#    Updated: 2023/03/14 12:50:56 by aascedu          ###   ########lyon.fr    #
+#    Updated: 2023/03/16 11:18:00 by aascedu          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,11 @@ OS = $(shell uname)
 
 LIBFT = libft/libft.a
 HEADER = so_long.h
-SRCS = src/main.c src/parsing.c src/error.c src/exit.c
+SRCS = src/main.c src/parsing.c src/check.c src/exit.c
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -I./inc -Wall -Werror -Wextra #-fsanitize=address -g3
+CFLAGS = -I./inc -Wall -Werror -Wextra -fsanitize=address -g3
 RM = rm -rf
 
 %.o : %.c ./inc/$(HEADER)
