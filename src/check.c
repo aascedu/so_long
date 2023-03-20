@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/20 13:23:06 by aascedu           #+#    #+#             */
+/*   Updated: 2023/03/20 14:24:07 by aascedu          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-int	map_is_full(char *str)
+int	map_correct(char *str)
 {
 	int	i;
 	int	nbr_c;
@@ -38,9 +50,11 @@ int	check_str(char *str)
 		if (str[i] != '1' && str[i] != '0' && str[i] != '\n' && str[i] != 'C'
 			&& str[i] != 'E' && str[i] != 'P')
 			return (1);
+		if (str[i] == '\n' && str[i + 1] != '1')
+			return (1);
 		i++;
 	}
-	if (map_is_full(str))
+	if (map_correct(str))
 		return (1);
 	return (0);
 }
@@ -51,9 +65,15 @@ int	check_filename(char *filename)
 		|| filename[ft_strlen(filename) - 2] != 'e'
 		|| filename[ft_strlen(filename) - 3] != 'b'
 		|| filename[ft_strlen(filename) - 4] != '.')
+	{
+		ft_printf("wrong extension : is the cause of the error !\n");
 		return (1);
+	}
 	else if (!ft_strncmp(filename, "/.ber", ft_strlen(filename)))
+	{
+		ft_printf("wrong filename : is the cause of the error !\n");
 		return (1);
+	}
 	return (0);
 }
 
@@ -65,5 +85,6 @@ int	check_directory(char *filename)
 	if (fd < 0)
 		return (0);
 	close(fd);
+	ft_printf("%s is a directory : is the cause of the error !\n");
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:49:00 by aascedu           #+#    #+#             */
-/*   Updated: 2023/03/16 11:49:46 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/20 13:22:18 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	free_array(char **array)
 {
 	int	i;
-	
+
 	i = 0;
 	while (array[i])
 	{
@@ -25,9 +25,16 @@ void	free_array(char **array)
 	free(array);
 }
 
+void	ft_error_empty_map(char *str, t_game *game)
+{
+	ft_printf("%s : is the cause of the error !\n", str);
+	free(game->line);
+	exit(1);
+}
+
 void	ft_error(char *str, t_game *game)
 {
-	ft_printf("%s : has made the program crash !\n", str);
+	ft_printf("%s : is the cause of the error !\n", str);
 	if (ft_strncmp(str, "fd", ft_strlen(str)) == 0)
 		exit(1);
 	free(game->str);
@@ -39,7 +46,15 @@ void	ft_error(char *str, t_game *game)
 
 void	ft_error_launched(char *str, t_game *game)
 {
-	ft_printf("%s : has made the program crash !\n", str);
+	ft_printf("%s : is the cause of the error !\n", str);
 	free_array(game->map);
-	exit (1);
+	exit(1);
+}
+
+void	ft_error_copy(char *str, t_game *game)
+{
+	ft_printf("%s : is the cause of the error !\n", str);
+	free_array(game->map);
+	free_array(game->map_copy);
+	exit(1);
 }
