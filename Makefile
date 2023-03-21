@@ -6,7 +6,7 @@
 #    By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 10:09:37 by arthurasced       #+#    #+#              #
-#    Updated: 2023/03/20 13:24:59 by aascedu          ###   ########lyon.fr    #
+#    Updated: 2023/03/21 10:32:41 by aascedu          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,14 @@ OS = $(shell uname)
 
 LIBFT = libft/libft.a
 HEADER = so_long.h
-SRCS = src/main.c src/parsing.c src/check.c src/exit.c src/map_recursive.c
+SRCS = src/main.c \
+		src/parsing.c \
+		src/check.c \
+		src/exit.c \
+		src/map_recursive.c \
+		src/init_window.c \
+		src/image.c \
+
 OBJS = $(SRCS:.c=.o)
 
 CC = cc

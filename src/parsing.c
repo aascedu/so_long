@@ -6,7 +6,7 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:49:55 by aascedu           #+#    #+#             */
-/*   Updated: 2023/03/20 13:24:10 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/21 10:34:40 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,4 +123,5 @@ void	ber_to_array(char *filename, t_game *game)
 	split_maps(game);
 	border_check(game);
 	map_check(game);
+	free_array(game->map_copy);
 }
