@@ -6,7 +6,7 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:27:23 by aascedu           #+#    #+#             */
-/*   Updated: 2023/03/21 11:19:45 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/22 14:34:18 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	main(int argc, char **argv)
 		return (1);
 	ber_to_array(argv[1], &game);
 	init_my_window(&game);
-	mlx_string_put(game.mlx_ptr, game.win_ptr, 300, 300, 0X00FFFF, "so_long");
-	mlx_destroy_window(game.mlx_ptr, game.win_ptr);
+	create_image(&game);
+	display_map(&game);
 	mlx_loop(game.mlx_ptr);
-	free(game.mlx_ptr);
+	return (0);
 }

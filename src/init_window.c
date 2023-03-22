@@ -6,7 +6,7 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 10:32:14 by aascedu           #+#    #+#             */
-/*   Updated: 2023/03/21 11:21:51 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/22 11:00:34 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	init_my_window(t_game* game)
 	game->mlx_ptr = mlx_init();
 	if (game->mlx_ptr == NULL)
 		ft_error_launched("mlx_init", game);
-	game->win_ptr = mlx_new_window(game->mlx_ptr, 1280, 720, "so_long");
+	game->win_ptr = mlx_new_window(game->mlx_ptr, (game->size_x + 1) * 96, \
+	(game->size_y + 1) * 96, "so_long");
 	if (game->win_ptr == NULL)
 		ft_error_launched("mlx_new_window", game);
 }

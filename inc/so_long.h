@@ -6,7 +6,7 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:28:22 by aascedu           #+#    #+#             */
-/*   Updated: 2023/03/21 11:08:32 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/22 13:57:42 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,15 @@ typedef struct s_game
 	char	*line;
 	int		pos_x;
 	int		pos_y;
+	int		size_x;
 	int		size_y;
+	void	*ground;
+	void	*wall;
+	void	*collect;
+	void	*player;
+	void	*exit;
+	int		img_width;
+	int		img_height;
 }		t_game;
 
 // check.c functions
@@ -47,6 +55,9 @@ void	ft_error_launched(char *str, t_game *game);
 void	ft_error_copy(char *str, t_game *game);
 
 // image.c functions
+void	create_image(t_game *game);
+void	destroy_image(t_game *game);
+void	display_map(t_game *game);
 
 // init_window.c
 void	init_my_window(t_game *game);

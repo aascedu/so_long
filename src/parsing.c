@@ -6,7 +6,7 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:49:55 by aascedu           #+#    #+#             */
-/*   Updated: 2023/03/21 10:34:40 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/22 10:59:56 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	is_rectangle(t_game *game)
 	}
 	game->pos_x--;
 	game->pos_y--;
+	game->size_x = game->pos_x;
 	game->size_y = game->pos_y;
 }
 
