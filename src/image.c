@@ -6,7 +6,7 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 10:07:45 by aascedu           #+#    #+#             */
-/*   Updated: 2023/03/22 14:36:16 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/22 15:16:40 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,15 @@
 void	destroy_image(t_game *game)
 {
 	if (game->ground)
-	{
-		ft_printf("test\n");
 		mlx_destroy_image(game->mlx_ptr, game->ground);
-	}
-	if (game->wall)
-	{
-		
-		ft_printf("test\n");
+	if (game->wall != NULL)
 		mlx_destroy_image(game->mlx_ptr, game->wall);
-	}
 	if (game->player)
-	{
-		
-		ft_printf("test\n");
 		mlx_destroy_image(game->mlx_ptr, game->player);
-	}
 	if (game->collect)
-	{
-		ft_printf("test\n");
 		mlx_destroy_image(game->mlx_ptr, game->collect);
-		
-	}
 	if (game->exit)
-	{
-		ft_printf("test\n");
 		mlx_destroy_image(game->mlx_ptr, game->exit);
-	}
-		
 	if (game->map)
 		free_array(game->map);
 	if (game->win_ptr && game->mlx_ptr)
@@ -57,10 +38,15 @@ void	destroy_image(t_game *game)
 
 void	create_image(t_game *game)
 {
+	game->ground = NULL;
+	game->wall = NULL;
+	game->player = NULL;
+	game->collect = NULL;
+	game->exit = NULL;
 	game->ground = mlx_xpm_file_to_image(game->mlx_ptr, "assets/ground.xpm", \
 	&game->img_width, &game->img_height);
 	if (game->ground == NULL)
-		destroy_image(game);
+		return (destroy_image(game));
 	game->wall = mlx_xpm_file_to_image(game->mlx_ptr, "assets/wall.xpm", \
 	&game->img_width, &game->img_height);
 	if (game->wall == NULL)
@@ -79,17 +65,8 @@ void	create_image(t_game *game)
 		destroy_image(game);
 }
 
-void	display_map(t_game *game)
+void	replace_map(t_game *game, int i, int j)
 {
-	int	i;
-	int	j;
-
-	i = -1;
-	while (game->map[++i])
-	{
-		j = -1;
-		while (game->map[i][++j])
-		{
 			if (game->map[i][j] == '1')
 				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
 				game->wall, j * 96, i * 96);
@@ -105,6 +82,18 @@ void	display_map(t_game *game)
 			if (game->map[i][j] == 'E')
 				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
 				game->exit, j * 96, i * 96);
-		}
+}
+
+void	display_map(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (game->map[++i])
+	{
+		j = -1;
+		while (game->map[i][++j])
+			replace_map(game, i, j);
 	}
 }
