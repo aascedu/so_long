@@ -6,7 +6,7 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:49:55 by aascedu           #+#    #+#             */
-/*   Updated: 2023/03/22 10:59:56 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/24 16:10:55 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	map_check(t_game *game)
 	int	y;
 
 	find_start_pos(game);
-	map_recursive(game, game->pos_x, game->pos_y);
+	find_exit_pos(game);
+	map_recursive(game, game->pos_y, game->pos_x);
 	y = 0;
 	while (game->map_copy[y])
 	{
@@ -119,7 +120,7 @@ void	ber_to_array(char *filename, t_game *game)
 			ft_error("ft_strjoin with game->str & game->line", game);
 		game->line = get_next_line(game->fd);
 	}
-	if (check_str(game->str))
+	if (check_str(game->str, game))
 		return (ft_error("incorrect map", game));
 	split_maps(game);
 	border_check(game);

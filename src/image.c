@@ -6,13 +6,13 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 10:07:45 by aascedu           #+#    #+#             */
-/*   Updated: 2023/03/22 15:16:40 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/24 15:49:54 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	destroy_image(t_game *game)
+int	destroy_image(t_game *game)
 {
 	if (game->ground)
 		mlx_destroy_image(game->mlx_ptr, game->ground);
@@ -46,7 +46,7 @@ void	create_image(t_game *game)
 	game->ground = mlx_xpm_file_to_image(game->mlx_ptr, "assets/ground.xpm", \
 	&game->img_width, &game->img_height);
 	if (game->ground == NULL)
-		return (destroy_image(game));
+		destroy_image(game);
 	game->wall = mlx_xpm_file_to_image(game->mlx_ptr, "assets/wall.xpm", \
 	&game->img_width, &game->img_height);
 	if (game->wall == NULL)
@@ -67,21 +67,18 @@ void	create_image(t_game *game)
 
 void	replace_map(t_game *game, int i, int j)
 {
-			if (game->map[i][j] == '1')
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
-				game->wall, j * 96, i * 96);
-			if (game->map[i][j] == '0')
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
-				game->ground, j * 96, i * 96);
-			if (game->map[i][j] == 'C')
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
-				game->collect, j * 96, i * 96);
-			if (game->map[i][j] == 'P')
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
-				game->player, j * 96, i * 96);
-			if (game->map[i][j] == 'E')
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
-				game->exit, j * 96, i * 96);
+	if (game->map[i][j] == '1')
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
+		game->wall, j * 96, i * 96);
+	if (game->map[i][j] == '0')
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
+		game->ground, j * 96, i * 96);
+	if (game->map[i][j] == 'C')
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
+		game->collect, j * 96, i * 96);
+	if (game->map[i][j] == 'P')
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
+		game->player, j * 96, i * 96);
 }
 
 void	display_map(t_game *game)
@@ -94,6 +91,17 @@ void	display_map(t_game *game)
 	{
 		j = -1;
 		while (game->map[i][++j])
+		{
 			replace_map(game, i, j);
+			if (game->pos_x == game->exit_x && game->pos_y == game->exit_y)
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
+				game->player, game->exit_x * 96, game->exit_y * 96);
+			else
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
+				game->exit, game->exit_x * 96, game->exit_y * 96);
+		}
+		if (game->nb_collected == game->nb_to_collect
+			&& (game->pos_x == game->exit_x && game->pos_y == game->exit_y))
+			destroy_image(game);
 	}
 }

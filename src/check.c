@@ -6,13 +6,13 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 13:23:06 by aascedu           #+#    #+#             */
-/*   Updated: 2023/03/20 14:24:07 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/24 16:13:57 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	map_correct(char *str)
+int	map_correct(char *str, t_game *game)
 {
 	int	i;
 	int	nbr_c;
@@ -35,10 +35,12 @@ int	map_correct(char *str)
 	}
 	if (nbr_c == 0 || nbr_e != 1 || nbr_p != 1)
 		return (1);
+	game->nb_to_collect = nbr_c;
+	game->nb_collected = 0;
 	return (0);
 }
 
-int	check_str(char *str)
+int	check_str(char *str, t_game *game)
 {
 	int	i;
 
@@ -54,7 +56,7 @@ int	check_str(char *str)
 			return (1);
 		i++;
 	}
-	if (map_correct(str))
+	if (map_correct(str, game))
 		return (1);
 	return (0);
 }
@@ -66,12 +68,12 @@ int	check_filename(char *filename)
 		|| filename[ft_strlen(filename) - 3] != 'b'
 		|| filename[ft_strlen(filename) - 4] != '.')
 	{
-		ft_printf("wrong extension : is the cause of the error !\n");
+		ft_printf("Error\nwrong extension : is the cause of the error !\n");
 		return (1);
 	}
 	else if (!ft_strncmp(filename, "/.ber", ft_strlen(filename)))
 	{
-		ft_printf("wrong filename : is the cause of the error !\n");
+		ft_printf("Error\nwrong filename : is the cause of the error !\n");
 		return (1);
 	}
 	return (0);
@@ -85,6 +87,6 @@ int	check_directory(char *filename)
 	if (fd < 0)
 		return (0);
 	close(fd);
-	ft_printf("%s is a directory : is the cause of the error !\n");
+	ft_printf("Error\n%s is a directory : is the cause of the error !\n");
 	return (1);
 }

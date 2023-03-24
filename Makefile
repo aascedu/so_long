@@ -6,7 +6,7 @@
 #    By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 10:09:37 by arthurasced       #+#    #+#              #
-#    Updated: 2023/03/22 14:36:23 by aascedu          ###   ########lyon.fr    #
+#    Updated: 2023/03/24 16:12:00 by aascedu          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,12 @@ SRCS = src/main.c \
 		src/map_recursive.c \
 		src/init_window.c \
 		src/image.c \
+		src/move.c \
 
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -I./inc -Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS = -I./inc -Wall -Werror -Wextra #-fsanitize=address -g3
 RM = rm -rf
 
 %.o : %.c ./inc/$(HEADER)

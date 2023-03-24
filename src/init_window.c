@@ -6,13 +6,13 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 10:32:14 by aascedu           #+#    #+#             */
-/*   Updated: 2023/03/22 11:00:34 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/24 15:50:17 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_my_window(t_game* game)
+void	init_my_window(t_game *game)
 {
 	game->mlx_ptr = mlx_init();
 	if (game->mlx_ptr == NULL)
