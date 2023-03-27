@@ -6,7 +6,7 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:28:22 by aascedu           #+#    #+#             */
-/*   Updated: 2023/03/24 15:17:00 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/27 09:22:42 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	ft_error_copy(char *str, t_game *game);
 
 // image.c functions
 void	create_image(t_game *game);
+void	destroy_image_error(t_game *game, char *str);
 int		destroy_image(t_game *game);
 void	display_map(t_game *game);
 

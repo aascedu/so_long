@@ -6,11 +6,36 @@
 /*   By: aascedu <aascedu@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 10:07:45 by aascedu           #+#    #+#             */
-/*   Updated: 2023/03/24 15:49:54 by aascedu          ###   ########lyon.fr   */
+/*   Updated: 2023/03/27 09:22:16 by aascedu          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	destroy_image_error(t_game *game, char *str)
+{
+	if (game->ground)
+		mlx_destroy_image(game->mlx_ptr, game->ground);
+	if (game->wall != NULL)
+		mlx_destroy_image(game->mlx_ptr, game->wall);
+	if (game->player)
+		mlx_destroy_image(game->mlx_ptr, game->player);
+	if (game->collect)
+		mlx_destroy_image(game->mlx_ptr, game->collect);
+	if (game->exit)
+		mlx_destroy_image(game->mlx_ptr, game->exit);
+	if (game->map)
+		free_array(game->map);
+	if (game->win_ptr && game->mlx_ptr)
+		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	if (game->mlx_ptr)
+	{
+		mlx_destroy_display(game->mlx_ptr);
+		free(game->mlx_ptr);
+	}
+	ft_printf("%s texture : is the cause of the error !\n", str);
+	exit (1);
+}
 
 int	destroy_image(t_game *game)
 {
@@ -32,7 +57,7 @@ int	destroy_image(t_game *game)
 	{
 		mlx_destroy_display(game->mlx_ptr);
 		free(game->mlx_ptr);
-	}	
+	}
 	exit (1);
 }
 
@@ -46,23 +71,23 @@ void	create_image(t_game *game)
 	game->ground = mlx_xpm_file_to_image(game->mlx_ptr, "assets/ground.xpm", \
 	&game->img_width, &game->img_height);
 	if (game->ground == NULL)
-		destroy_image(game);
+		destroy_image_error(game, "ground.xpm");
 	game->wall = mlx_xpm_file_to_image(game->mlx_ptr, "assets/wall.xpm", \
 	&game->img_width, &game->img_height);
 	if (game->wall == NULL)
-		destroy_image(game);
+		destroy_image_error(game, "wall.xpm");
 	game->player = mlx_xpm_file_to_image(game->mlx_ptr, "assets/jul.xpm", \
 	&game->img_width, &game->img_height);
 	if (game->player == NULL)
-		destroy_image(game);
+		destroy_image_error(game, "jul.xpm");
 	game->collect = mlx_xpm_file_to_image(game->mlx_ptr, "assets/ovni.xpm", \
 	&game->img_width, &game->img_height);
 	if (game->collect == NULL)
-		destroy_image(game);
+		destroy_image_error(game, "ovni.xpm");
 	game->exit = mlx_xpm_file_to_image(game->mlx_ptr, "assets/tmax.xpm", \
 	&game->img_width, &game->img_height);
 	if (game->exit == NULL)
-		destroy_image(game);
+		destroy_image_error(game, "tmax.xpm");
 }
 
 void	replace_map(t_game *game, int i, int j)
